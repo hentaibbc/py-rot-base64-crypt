@@ -16,9 +16,7 @@ class Crypt:
         return f'{seed}.{self.__urlBase64Encode(rotated)}'
 
     def decrypt(self, string):
-        parts = string.split('.')
-        seed = parts[0]
-        encoded = parts[1]
+        seed, encoded = string.split('.')
         key = self.__genKey(seed = seed)
         rotated = self.__rotate(key, self.__urlBase64Decode(encoded), True)
         return self.__urlBase64Decode(rotated)
